@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= pageTitle %></title>
+</head>
+<body>
+    <h1>Welcome to the Home Page</h1>
+    <p>This is the home page content.</p>
+    <a href="/">Home</a> | <a href="/contact">Contact</a> | <a href="/about">About</a> <br><br>
+    
+    <h1 style="text-align:center;">This is Calculator</h1>
+
+    <form action="calculator" method="post" style="text-align:center;">
+        <h3>Addition Using Post Method</h3><br>
+        <input type="text" name="number_1" placeholder="Number 1"><br><br>
+        <input type="text" name="number_2" placeholder="Number 2"><br><br>
+        <button>Add</button>
+    </form><br>
+    <div style="text-align:center;">The sum given by server is <%= sum_post %></div><br>
+
+    <div style="text-align:center;">
+        <h3>Addition Using Get Method</h3><br>
+        <input type="text" id="number_1" placeholder="Number 1"><br><br>
+        <input type="text" id="number_2" placeholder="Number 2"><br><br>
+        <button onclick="openGetUrl();">Add</button>
+    </div><br>
+    <div style="text-align:center;">The sum given by Server is <%= sum_get %></div><br>
+
+    <div style="text-align:center;">
+        <h3>Addition Using Javascript</h3><br>
+        <input type="text" id="number_3" placeholder="Number 1"><br><br>
+        <input type="text" id="number_4" placeholder="Number 2"><br><br>
+        <button onclick="add();">Add</button>
+    </div><br>
+    <div style="text-align:center;">The sum given by browser is <span id="sum_result_span"></span></div><br>
+    
+    <script>
+        function add(){
+            var n1= parseInt(document.getElementById('number_3').value);
+            var n2= parseInt(document.getElementById('number_4').value);
+            var sum=n1+n2;
+            document.getElementById('sum_result_span').innerHTML=sum;
+        }
+
+        function openGetUrl(){
+            var n1= parseInt(document.getElementById('number_1').value);
+            var n2= parseInt(document.getElementById('number_2').value);
+            window.location.href =`http://localhost:3000/calculator?number_1=${n1}&number_2=${n2}`;
+        }
+    </script>
+</body>
+</html>
